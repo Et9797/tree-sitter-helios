@@ -1,0 +1,246 @@
+==================
+Function types
+==================
+
+spending app
+
+func test() -> (String, String) -> String {
+    (a: String, b: String) -> String { "Test" }
+}
+
+func main() -> Bool {
+	true	
+}
+
+---
+
+(source_file
+  (script_purpose
+    script_name: (identifier))
+  (function_statement
+    name: (identifier)
+    return_type: (type
+      (type
+        (str_type))
+      (type
+        (str_type))
+      return_type: (type
+        (str_type)))
+    (literal_expression
+      (func_literal
+        args: (func_args
+          (parameter
+              name: (identifier)
+              type: (type
+                (str_type)))
+          (parameter
+              name: (identifier)
+              type: (type
+                (str_type))))
+        return_type: (type
+          (str_type))
+        (literal_expression
+          (string_literal)))))
+  (main_function_statement
+    return_type: (bool_type)
+    (literal_expression
+      (bool_literal))))
+
+
+==================
+Non-function types
+==================
+
+spending app
+
+func test() -> String {
+    "Test"
+}
+
+func test() -> Datum::deadline {
+    5000
+}
+
+func test() -> []Bool {
+    []Bool{true, false, true}
+}
+
+func test() -> []String {
+    []String{"Test1", "Test2", "Test3"}
+}
+
+func test() -> []Datum {
+    []Datum{
+        Datum {
+            a: 25,
+            b: "String"
+        },
+        Datum {
+            a: 10,
+            b: "String2"
+        }
+    }
+}
+
+func test() -> []Map[MintingPolicyHash]Map[TokenName]Int {
+    []Map[MintingPolicyHash]Map[TokenName]Int{
+        Map[MintingPolicyHash]Map[TokenName]Int{
+            "1234519239821": Map[TokenName]Int{
+                #912213af: 25,
+                #612213af: 1
+            }
+       }, Map[MintingPolicyHash]Map[TokenName]Int{
+            "9123012129121": Map[TokenName]Int{
+                #123123af: 1,
+                #752213af: 39
+            }
+        }
+    }
+}
+
+func main() -> Bool {
+	true
+}
+
+---
+
+(source_file
+  (script_purpose
+    script_name: (identifier))
+  (function_statement
+    name: (identifier)
+    return_type: (type
+      (str_type))
+    (literal_expression
+      (string_literal)))
+  (function_statement
+    name: (identifier)
+    return_type: (type
+      (path_type
+        (identifier)
+        (identifier)))
+    (literal_expression
+      (int_literal)))
+  (function_statement
+    name: (identifier)
+    return_type: (type
+      (list_type
+        (bool_type)))
+    (literal_expression
+      (list_literal
+        (list_type
+          (bool_type))
+        (literal_expression
+          (bool_literal))
+        (literal_expression
+          (bool_literal))
+        (literal_expression
+          (bool_literal)))))
+  (function_statement
+    name: (identifier)
+    return_type: (type
+      (list_type
+        (str_type)))
+    (literal_expression
+      (list_literal
+        (list_type
+          (str_type))
+        (literal_expression
+          (string_literal))
+        (literal_expression
+          (string_literal))
+        (literal_expression
+          (string_literal)))))
+  (function_statement
+    name: (identifier)
+    return_type: (type
+      (list_type
+        (identifier)))
+    (literal_expression
+      (list_literal
+        (list_type
+          (identifier))
+        (literal_expression
+          (struct_literal
+            struct_identifier: (identifier)
+            struct_field: (identifier)
+            (literal_expression
+              (int_literal))
+            struct_field: (identifier)
+            (literal_expression
+              (string_literal))))
+        (literal_expression
+          (struct_literal
+            struct_identifier: (identifier)
+            struct_field: (identifier)
+            (literal_expression
+              (int_literal))
+            struct_field: (identifier)
+            (literal_expression
+              (string_literal)))))))
+  (function_statement
+    name: (identifier)
+    return_type: (type
+      (list_type
+        (map_type
+          (identifier)
+          (map_type
+            (identifier)
+            (int_type)))))
+    (literal_expression
+      (list_literal
+        (list_type
+          (map_type
+            (identifier)
+            (map_type
+              (identifier)
+              (int_type))))
+        (literal_expression
+          (map_literal
+            (map_type
+              (identifier)
+              (map_type
+                (identifier)
+                (int_type)))
+            (literal_expression
+              (string_literal))
+            (literal_expression
+              (map_literal
+                (map_type
+                  (identifier)
+                  (int_type))
+                (literal_expression
+                  (bytearray_literal))
+                (literal_expression
+                  (int_literal))
+                (literal_expression
+                  (bytearray_literal))
+                (literal_expression
+                  (int_literal))))))
+        (literal_expression
+          (map_literal
+            (map_type
+              (identifier)
+              (map_type
+                (identifier)
+                (int_type)))
+            (literal_expression
+              (string_literal))
+            (literal_expression
+              (map_literal
+                (map_type
+                  (identifier)
+                  (int_type))
+                (literal_expression
+                  (bytearray_literal))
+                (literal_expression
+                  (int_literal))
+                (literal_expression
+                  (bytearray_literal))
+                (literal_expression
+                  (int_literal)))))))))
+  (main_function_statement
+    return_type: (bool_type)
+    (literal_expression
+      (bool_literal))))
+

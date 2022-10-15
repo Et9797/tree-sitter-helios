@@ -1,0 +1,562 @@
+==================
+Literals
+==================
+
+testing app
+
+func test() -> ByteArray {
+    #123019231af
+}
+
+func test() -> Int {
+    121390
+}
+
+func test() -> Datum {
+    Datum {
+        a: 10,
+        b: "String"
+    }
+}
+
+func test() -> []Datum {
+    []Datum{
+        Datum {
+            a: 25,
+            b: "String"
+        },
+        Datum {
+            a: 10,
+            b: "String2"
+        }
+    }
+}
+
+func test() -> Map[String]Int {
+    Map[String]Int{
+        "String": 5,
+        "String2": 10
+    }
+}
+
+func main() -> Bool {
+	true
+}
+
+---
+
+(source_file
+  (script_purpose
+    script_name: (identifier))
+  (function_statement
+    name: (identifier)
+    return_type: (type
+      (bytearray_type))
+    (literal_expression
+      (bytearray_literal)))
+  (function_statement
+    name: (identifier)
+    return_type: (type
+      (int_type))
+    (literal_expression
+      (int_literal)))
+  (function_statement
+    name: (identifier)
+    return_type: (type
+      (identifier))
+    (literal_expression
+      (struct_literal
+        struct_identifier: (identifier)
+        struct_field: (identifier)
+        (literal_expression
+          (int_literal))
+        struct_field: (identifier)
+        (literal_expression
+          (string_literal)))))
+  (function_statement
+    name: (identifier)
+    return_type: (type
+      (list_type
+        (identifier)))
+    (literal_expression
+      (list_literal
+        (list_type
+          (identifier))
+        (literal_expression
+          (struct_literal
+            struct_identifier: (identifier)
+            struct_field: (identifier)
+            (literal_expression
+              (int_literal))
+            struct_field: (identifier)
+            (literal_expression
+              (string_literal))))
+        (literal_expression
+          (struct_literal
+            struct_identifier: (identifier)
+            struct_field: (identifier)
+            (literal_expression
+              (int_literal))
+            struct_field: (identifier)
+            (literal_expression
+              (string_literal)))))))
+  (function_statement
+    name: (identifier)
+    return_type: (type
+      (map_type
+        (str_type)
+        (int_type)))
+    (literal_expression
+      (map_literal
+        (map_type
+          (str_type)
+          (int_type))
+        (literal_expression
+          (string_literal))
+        (literal_expression
+          (int_literal))
+        (literal_expression
+          (string_literal))
+        (literal_expression
+          (int_literal)))))
+  (main_function_statement
+    return_type: (bool_type)
+    (literal_expression
+      (bool_literal))))
+
+
+==================
+Assignment/Print
+==================
+
+testing app
+
+const x: String = 10
+
+func test() -> Bool {
+    x: String = "Test";
+    y = "Test2";
+    print("s");
+    print("s");
+    print(x);
+    print(y);
+    true
+}
+
+
+func main() -> Bool {
+	true
+}
+
+---
+
+(source_file
+  (script_purpose
+    script_name: (identifier))
+  (const_statement
+    name: (identifier)
+    type: (type
+      (str_type))
+    (literal_expression
+      (int_literal)))
+  (function_statement
+    name: (identifier)
+    return_type: (type
+      (bool_type))
+    (assignment_expression
+      name: (identifier)
+      (type
+        (str_type))
+      (literal_expression
+        (string_literal))
+      (assignment_expression
+        name: (identifier)
+        (literal_expression
+          (string_literal))
+        (print_expression
+          (literal_expression
+            (string_literal))
+          (print_expression
+            (literal_expression
+              (string_literal))
+            (print_expression
+              (value_ref_expression
+                (identifier))
+              (print_expression
+                (value_ref_expression
+                  (identifier))
+                (literal_expression
+                  (bool_literal)))))))))
+  (main_function_statement
+    return_type: (bool_type)
+    (literal_expression
+      (bool_literal))))
+
+
+==================
+Switch case
+==================
+
+testing app
+
+enum Redeemer {
+    Cancel {
+		a: Int
+		b: Int
+	}
+    Buy
+    Bid
+}
+
+const r: Redeemer = Redeemer::Cancel{a: 20, b: 50}
+const r: Redeemer = Redeemer::Bid
+
+func test() -> Bool {
+    r.switch {
+        a: Cancel => {
+            print("Cancel");
+            true
+        },
+        Buy => {
+            print("Buy");
+            true
+        },
+		else => str: String = "Bid"; print(str); false
+    }
+
+}
+
+func main() -> Bool {
+	true
+}
+
+---
+
+(source_file
+  (script_purpose
+    script_name: (identifier))
+  (enum_statement
+    name: (identifier)
+    (enum_variant
+      name: (identifier)
+      (data_field
+          name: (identifier)
+          type: (type
+            (int_type)))
+      (data_field
+          name: (identifier)
+          type: (type
+            (int_type))))
+    (enum_variant
+      name: (identifier))
+    (enum_variant
+      name: (identifier)))
+  (const_statement
+    name: (identifier)
+    type: (type
+      (identifier))
+    (literal_expression
+      (struct_literal
+        (path_type
+          (identifier)
+          (identifier))
+        struct_field: (identifier)
+        (literal_expression
+          (int_literal))
+        struct_field: (identifier)
+        (literal_expression
+          (int_literal)))))
+  (const_statement
+    name: (identifier)
+    type: (type
+      (identifier))
+    (value_path_expression
+      (identifier)
+      (identifier)))
+  (function_statement
+    name: (identifier)
+    return_type: (type
+      (bool_type))
+    (switch_expression
+      (value_ref_expression
+        (identifier))
+      (switch_case
+        (identifier)
+        (identifier)
+        (switch_value_expr
+          (print_expression
+            (literal_expression
+              (string_literal))
+            (literal_expression
+              (bool_literal)))))
+      (switch_case
+        (identifier)
+        (switch_value_expr
+          (print_expression
+            (literal_expression
+              (string_literal))
+            (literal_expression
+              (bool_literal)))))
+      (switch_case
+        (identifier)
+        (switch_value_expr
+          (assignment_expression
+            name: (identifier)
+            (type
+              (str_type))
+            (literal_expression
+              (string_literal))
+            (print_expression
+              (value_ref_expression
+                (identifier))
+              (literal_expression
+                (bool_literal))))))))
+  (main_function_statement
+    return_type: (bool_type)
+    (literal_expression
+      (bool_literal))))
+
+
+==================
+If else
+==================
+
+testing app
+
+func test() -> Bool {
+	if (true) {
+		if (true) {
+			print("Test");
+			true
+		} else if (true) {
+			true
+		} else {
+			false
+		}
+	} else {
+		print("Test");
+		false	
+	}
+}
+
+func main() -> Bool {
+	true
+}
+
+---
+
+(source_file
+  (script_purpose
+    script_name: (identifier))
+  (function_statement
+    name: (identifier)
+    return_type: (type
+      (bool_type))
+    (ifelse_expression
+      (literal_expression
+        (bool_literal))
+      (ifelse_expression
+        (literal_expression
+          (bool_literal))
+        (print_expression
+          (literal_expression
+            (string_literal))
+          (literal_expression
+            (bool_literal)))
+        (literal_expression
+          (bool_literal))
+        (literal_expression
+          (bool_literal))
+        (literal_expression
+          (bool_literal)))
+      (print_expression
+        (literal_expression
+          (string_literal))
+        (literal_expression
+          (bool_literal)))))
+  (main_function_statement
+    return_type: (bool_type)
+    (literal_expression
+      (bool_literal))))
+
+
+==================
+Call/Member
+==================
+
+testing app
+
+enum Redeemer {
+    Cancel {
+		a: Int
+		b: Int
+	}
+    Buy
+    Bid
+
+	func x() -> Bool {
+		true
+	}
+}
+
+struct Datum {
+	deadline: Int
+}
+
+const r: Redeemer = Redeemer::Cancel{a: 20, b: 50}
+const r: Redeemer = Redeemer::Bid
+const r: Redeemer = Redeemer::x()
+const d: Datum = Datum { 1000 }
+const dl: Int = Datum.deadline
+const dl_string: String = Datum.deadline.show()
+
+func main() -> Bool {
+	true
+}
+
+---
+
+(source_file
+  (script_purpose
+    script_name: (identifier))
+  (enum_statement
+    name: (identifier)
+    (enum_variant
+      name: (identifier)
+      (data_field
+          name: (identifier)
+          type: (type
+            (int_type)))
+      (data_field
+          name: (identifier)
+          type: (type
+            (int_type))))
+    (enum_variant
+      name: (identifier))
+    (enum_variant
+      name: (identifier))
+    (function_statement
+      name: (identifier)
+      return_type: (type
+        (bool_type))
+      (literal_expression
+        (bool_literal))))
+  (struct_statement
+    name: (identifier)
+    (data_field
+        name: (identifier)
+        type: (type
+          (int_type))))
+  (const_statement
+    name: (identifier)
+    type: (type
+      (identifier))
+    (literal_expression
+      (struct_literal
+        (path_type
+          (identifier)
+          (identifier))
+        struct_field: (identifier)
+        (literal_expression
+          (int_literal))
+        struct_field: (identifier)
+        (literal_expression
+          (int_literal)))))
+  (const_statement
+    name: (identifier)
+    type: (type
+      (identifier))
+    (value_path_expression
+      (identifier)
+      (identifier)))
+  (const_statement
+    name: (identifier)
+    type: (type
+      (identifier))
+    (call_expression
+      (value_path_expression
+        (identifier)
+        (identifier))))
+  (const_statement
+    name: (identifier)
+    type: (type
+      (identifier))
+    (literal_expression
+      (struct_literal
+        struct_identifier: (identifier)
+        (literal_expression
+          (int_literal)))))
+  (const_statement
+    name: (identifier)
+    type: (type
+      (int_type))
+    (member_expression
+      (value_ref_expression
+        (identifier))
+      (identifier)))
+  (const_statement
+    name: (identifier)
+    type: (type
+      (str_type))
+    (call_expression
+      (member_expression
+        (member_expression
+          (value_ref_expression
+            (identifier))
+          (identifier))
+        (identifier))))
+  (main_function_statement
+    return_type: (bool_type)
+    (literal_expression
+      (bool_literal))))
+
+==================
+Binary/Unary
+==================
+
+testing app
+
+func test() -> Bool {
+	x = a < 10;
+	y = -11 >= 99;
+	x || y
+}
+
+func main() -> Bool {
+	true
+}
+
+---
+
+(source_file
+  (script_purpose
+    script_name: (identifier))
+  (function_statement
+    name: (identifier)
+    return_type: (type
+      (bool_type))
+    (assignment_expression
+      name: (identifier)
+      (binary_expression
+        (value_ref_expression
+          (identifier))
+        (literal_expression
+          (int_literal)))
+      (assignment_expression
+        name: (identifier)
+        (binary_expression
+          (unary_expression
+            (literal_expression
+              (int_literal)))
+          (literal_expression
+            (int_literal)))
+        (binary_expression
+          (value_ref_expression
+            (identifier))
+          (value_ref_expression
+            (identifier))))))
+  (main_function_statement
+    return_type: (bool_type)
+    (literal_expression
+      (bool_literal))))
+

@@ -1,0 +1,168 @@
+==================
+ScriptPurpose
+==================
+
+spending app
+
+func main() -> Bool {
+	true	
+}
+
+---
+
+(source_file
+  (script_purpose
+    script_name: (identifier))
+  (main_function_statement
+	return_type: (bool_type)
+	(literal_expression
+	  (bool_literal))))
+
+
+==================
+Compound statements
+==================
+
+testing app
+
+const x: Int = 5
+const x: String = "Test"
+
+struct Datum {
+    a: Int 
+    b: Int
+
+    const x: String = "Test"
+
+    func method(self) -> String {
+        "Test"
+    }
+
+    func test1(a: Int, b: Int) -> Bool {
+        true
+    }
+}
+
+enum Redeemer {
+    Cancel
+    Bid
+    Buy {
+       x: Int
+       p: String
+    }
+
+    func test1() -> Bool {
+        false
+    }
+
+    func test2(self) -> String {
+        "Test"
+    }
+}
+
+func a(b: Int) -> Int {
+	5
+}
+
+func main() -> Bool {
+	true
+}
+
+---
+
+(source_file
+  (script_purpose
+    script_name: (identifier))
+  (const_statement
+    name: (identifier)
+    type: (type
+      (int_type))
+    (literal_expression
+      (int_literal)))
+  (const_statement
+    name: (identifier)
+    type: (type
+      (str_type))
+    (literal_expression
+      (string_literal)))
+  (struct_statement
+    name: (identifier)
+    (data_field
+        name: (identifier)
+        type: (type
+          (int_type)))
+    (data_field
+        name: (identifier)
+        type: (type
+          (int_type)))
+    (const_statement
+      name: (identifier)
+      type: (type
+        (str_type))
+      (literal_expression
+        (string_literal)))
+    (method_statement
+      name: (identifier)
+      return_type: (type
+        (str_type))
+      (literal_expression
+        (string_literal)))
+    (function_statement
+      name: (identifier)
+      args: (func_args
+        (parameter
+            name: (identifier)
+            type: (type
+              (int_type)))
+        (parameter
+            name: (identifier)
+            type: (type
+              (int_type))))
+      return_type: (type
+        (bool_type))
+      (literal_expression
+        (bool_literal))))
+  (enum_statement
+    name: (identifier)
+    (enum_variant
+      name: (identifier))
+    (enum_variant
+      name: (identifier))
+    (enum_variant
+      name: (identifier)
+      (data_field
+          name: (identifier)
+          type: (type
+            (int_type)))
+      (data_field
+          name: (identifier)
+          type: (type
+            (str_type))))
+    (function_statement
+      name: (identifier)
+      return_type: (type
+        (bool_type))
+      (literal_expression
+        (bool_literal)))
+    (method_statement
+      name: (identifier)
+      return_type: (type
+        (str_type))
+      (literal_expression
+        (string_literal))))
+  (function_statement
+    name: (identifier)
+    args: (func_args
+      (parameter
+          name: (identifier)
+          type: (type
+            (int_type))))
+    return_type: (type
+      (int_type))
+    (literal_expression
+      (int_literal)))
+  (main_function_statement
+    return_type: (bool_type)
+    (literal_expression
+      (bool_literal))))
+
