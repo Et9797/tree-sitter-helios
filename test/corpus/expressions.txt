@@ -407,8 +407,8 @@ const r: Redeemer = Redeemer::Cancel{a: 20, b: 50}
 const r: Redeemer = Redeemer::Bid
 const r: Redeemer = Redeemer::x()
 const d: Datum = Datum { 1000 }
-const dl: Int = Datum.deadline
-const dl_string: String = Datum.deadline.show()
+const dl: Int = d.deadline
+const dl_string: String = d.deadline.show()
 
 func main() -> Bool {
 	true
