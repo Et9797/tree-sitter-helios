@@ -181,8 +181,8 @@ module.exports = grammar({
         ),
 
         _nonfunc_type: $ => choice(
-            $.identifier,
             $._primitive_type,
+            $.ref_type,
             $.path_type,
             $.list_type,
             $.map_type,
@@ -205,8 +205,10 @@ module.exports = grammar({
         bytearray_type: $ => "ByteArray",
 
         path_type: $ => seq(
-            $._nonfunc_type, '::', $.identifier
+            $._nonfunc_type, '::', field('name', $.identifier)
         ),
+
+        ref_type: $ => field('name', $.identifier),
 
         list_type: $ => seq(
             '[', ']', $._nonfunc_type
@@ -235,10 +237,10 @@ module.exports = grammar({
             $.switch_expression
         ),
 
-        value_ref_expression: $ => $.identifier,
+        value_ref_expression: $ => field('name', $.identifier),
 
         value_path_expression: $ => prec.left(8, seq(
-            $._nonfunc_type, '::', $.identifier
+            $._nonfunc_type, '::', field('name', $.identifier)
         )),
 
         literal_expression: $ => choice(
@@ -441,16 +443,12 @@ module.exports = grammar({
 
         _terminator: $ => ';',
 
-        true: $ => 'true',
-
-        false: $ => 'false',
-
         _comment: $ => token(choice(
             seq('//', /.*/),
             seq(
-				'/*',
-				/[^*]*\*+([^/*][^*]*\*+)*/,
-				'/'
+                '/*',
+                /[^*]*\*+([^/*][^*]*\*+)*/,
+                '/'
 			)
         ))
     }

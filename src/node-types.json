@@ -655,10 +655,6 @@
           "named": true
         },
         {
-          "type": "identifier",
-          "named": true
-        },
-        {
           "type": "int_type",
           "named": true
         },
@@ -676,6 +672,10 @@
         },
         {
           "type": "path_type",
+          "named": true
+        },
+        {
+          "type": "ref_type",
           "named": true
         },
         {
@@ -880,10 +880,6 @@
           "named": true
         },
         {
-          "type": "identifier",
-          "named": true
-        },
-        {
           "type": "int_type",
           "named": true
         },
@@ -901,6 +897,10 @@
         },
         {
           "type": "path_type",
+          "named": true
+        },
+        {
+          "type": "ref_type",
           "named": true
         },
         {
@@ -1080,10 +1080,6 @@
           "named": true
         },
         {
-          "type": "identifier",
-          "named": true
-        },
-        {
           "type": "int_type",
           "named": true
         },
@@ -1101,6 +1097,10 @@
         },
         {
           "type": "path_type",
+          "named": true
+        },
+        {
+          "type": "ref_type",
           "named": true
         },
         {
@@ -1190,9 +1190,20 @@
   {
     "type": "path_type",
     "named": true,
-    "fields": {},
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
         {
@@ -1201,10 +1212,6 @@
         },
         {
           "type": "bytearray_type",
-          "named": true
-        },
-        {
-          "type": "identifier",
           "named": true
         },
         {
@@ -1225,6 +1232,10 @@
         },
         {
           "type": "path_type",
+          "named": true
+        },
+        {
+          "type": "ref_type",
           "named": true
         },
         {
@@ -1291,6 +1302,22 @@
           "named": true
         }
       ]
+    }
+  },
+  {
+    "type": "ref_type",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
@@ -1624,10 +1651,6 @@
           "named": true
         },
         {
-          "type": "identifier",
-          "named": true
-        },
-        {
           "type": "int_type",
           "named": true
         },
@@ -1645,6 +1668,10 @@
         },
         {
           "type": "path_type",
+          "named": true
+        },
+        {
+          "type": "ref_type",
           "named": true
         },
         {
@@ -1712,9 +1739,20 @@
   {
     "type": "value_path_expression",
     "named": true,
-    "fields": {},
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
         {
@@ -1723,10 +1761,6 @@
         },
         {
           "type": "bytearray_type",
-          "named": true
-        },
-        {
-          "type": "identifier",
           "named": true
         },
         {
@@ -1750,6 +1784,10 @@
           "named": true
         },
         {
+          "type": "ref_type",
+          "named": true
+        },
+        {
           "type": "str_type",
           "named": true
         }
@@ -1759,16 +1797,17 @@
   {
     "type": "value_ref_expression",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "identifier",
-          "named": true
-        }
-      ]
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {

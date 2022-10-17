@@ -117,8 +117,9 @@ func main() -> Bool {
     name: (identifier)
     return_type: (type
       (path_type
-        (identifier)
-        (identifier)))
+        (ref_type
+          name: (identifier))
+        name: (identifier)))
     (literal_expression
       (int_literal)))
   (function_statement
@@ -155,11 +156,13 @@ func main() -> Bool {
     name: (identifier)
     return_type: (type
       (list_type
-        (identifier)))
+        (ref_type
+          name: (identifier))))
     (literal_expression
       (list_literal
         (list_type
-          (identifier))
+          (ref_type
+            name: (identifier)))
         (literal_expression
           (struct_literal
             struct_identifier: (identifier)
@@ -183,31 +186,38 @@ func main() -> Bool {
     return_type: (type
       (list_type
         (map_type
-          (identifier)
+          (ref_type
+            name: (identifier))
           (map_type
-            (identifier)
+            (ref_type
+              name: (identifier))
             (int_type)))))
     (literal_expression
       (list_literal
         (list_type
           (map_type
-            (identifier)
+            (ref_type
+              name: (identifier))
             (map_type
-              (identifier)
+              (ref_type
+                name: (identifier))
               (int_type))))
         (literal_expression
           (map_literal
             (map_type
-              (identifier)
+              (ref_type
+                name: (identifier))
               (map_type
-                (identifier)
+                (ref_type
+                  name: (identifier))
                 (int_type)))
             (literal_expression
               (string_literal))
             (literal_expression
               (map_literal
                 (map_type
-                  (identifier)
+                  (ref_type
+                    name: (identifier))
                   (int_type))
                 (literal_expression
                   (bytearray_literal))
@@ -220,16 +230,19 @@ func main() -> Bool {
         (literal_expression
           (map_literal
             (map_type
-              (identifier)
+              (ref_type
+                name: (identifier))
               (map_type
-                (identifier)
+                (ref_type
+                  name: (identifier))
                 (int_type)))
             (literal_expression
               (string_literal))
             (literal_expression
               (map_literal
                 (map_type
-                  (identifier)
+                  (ref_type
+                    name: (identifier))
                   (int_type))
                 (literal_expression
                   (bytearray_literal))

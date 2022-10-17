@@ -63,7 +63,8 @@ func main() -> Bool {
   (function_statement
     name: (identifier)
     return_type: (type
-      (identifier))
+      (ref_type
+        name: (identifier)))
     (literal_expression
       (struct_literal
         struct_identifier: (identifier)
@@ -77,11 +78,13 @@ func main() -> Bool {
     name: (identifier)
     return_type: (type
       (list_type
-        (identifier)))
+        (ref_type
+          name: (identifier))))
     (literal_expression
       (list_literal
         (list_type
-          (identifier))
+          (ref_type
+            name: (identifier)))
         (literal_expression
           (struct_literal
             struct_identifier: (identifier)
@@ -181,10 +184,10 @@ func main() -> Bool {
               (string_literal))
             (print_expression
               (value_ref_expression
-                (identifier))
+                name: (identifier))
               (print_expression
                 (value_ref_expression
-                  (identifier))
+                  name: (identifier))
                 (literal_expression
                   (bool_literal)))))))))
   (main_function_statement
@@ -254,12 +257,14 @@ func main() -> Bool {
   (const_statement
     name: (identifier)
     type: (type
-      (identifier))
+      (ref_type
+        name: (identifier)))
     (literal_expression
       (struct_literal
         (path_type
-          (identifier)
-          (identifier))
+          (ref_type
+            name: (identifier))
+          name: (identifier))
         struct_field: (identifier)
         (literal_expression
           (int_literal))
@@ -269,17 +274,19 @@ func main() -> Bool {
   (const_statement
     name: (identifier)
     type: (type
-      (identifier))
+      (ref_type
+        name: (identifier)))
     (value_path_expression
-      (identifier)
-      (identifier)))
+      (ref_type
+        name: (identifier))
+      name: (identifier)))
   (function_statement
     name: (identifier)
     return_type: (type
       (bool_type))
     (switch_expression
       (value_ref_expression
-        (identifier))
+        name: (identifier))
       (switch_case
         (identifier)
         (identifier)
@@ -308,7 +315,7 @@ func main() -> Bool {
               (string_literal))
             (print_expression
               (value_ref_expression
-                (identifier))
+                name: (identifier))
               (literal_expression
                 (bool_literal))))))))
   (main_function_statement
@@ -450,12 +457,14 @@ func main() -> Bool {
   (const_statement
     name: (identifier)
     type: (type
-      (identifier))
+      (ref_type
+        name: (identifier)))
     (literal_expression
       (struct_literal
         (path_type
-          (identifier)
-          (identifier))
+          (ref_type
+            name: (identifier))
+          name: (identifier))
         struct_field: (identifier)
         (literal_expression
           (int_literal))
@@ -465,22 +474,27 @@ func main() -> Bool {
   (const_statement
     name: (identifier)
     type: (type
-      (identifier))
+      (ref_type
+        name: (identifier)))
     (value_path_expression
-      (identifier)
-      (identifier)))
+      (ref_type
+        name: (identifier))
+      name: (identifier)))
   (const_statement
     name: (identifier)
     type: (type
-      (identifier))
+      (ref_type
+        name: (identifier)))
     (call_expression
       (value_path_expression
-        (identifier)
-        (identifier))))
+        (ref_type
+          name: (identifier))
+        name: (identifier))))
   (const_statement
     name: (identifier)
     type: (type
-      (identifier))
+      (ref_type
+        name: (identifier)))
     (literal_expression
       (struct_literal
         struct_identifier: (identifier)
@@ -492,7 +506,7 @@ func main() -> Bool {
       (int_type))
     (member_expression
       (value_ref_expression
-        (identifier))
+        name: (identifier))
       (identifier)))
   (const_statement
     name: (identifier)
@@ -502,13 +516,14 @@ func main() -> Bool {
       (member_expression
         (member_expression
           (value_ref_expression
-            (identifier))
+            name: (identifier))
           (identifier))
         (identifier))))
   (main_function_statement
     return_type: (bool_type)
     (literal_expression
       (bool_literal))))
+
 
 ==================
 Binary/Unary
@@ -539,7 +554,7 @@ func main() -> Bool {
       name: (identifier)
       (binary_expression
         (value_ref_expression
-          (identifier))
+          name: (identifier))
         (literal_expression
           (int_literal)))
       (assignment_expression
@@ -552,9 +567,9 @@ func main() -> Bool {
             (int_literal)))
         (binary_expression
           (value_ref_expression
-            (identifier))
+            name: (identifier))
           (value_ref_expression
-            (identifier))))))
+            name: (identifier))))))
   (main_function_statement
     return_type: (bool_type)
     (literal_expression
