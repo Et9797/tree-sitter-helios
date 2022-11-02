@@ -72,7 +72,7 @@ module.exports = grammar({
             'func',
             field('name', $.identifier),
             '(',
-            field('args', $._method_args),
+            $._method_args,
             ')',
             '->',
             field('return_type', $.type),
@@ -91,7 +91,7 @@ module.exports = grammar({
             optional(
                 seq(
                     ',',
-                    $.func_args
+                    field('args', $.func_args)
                 )
             )
         ),
@@ -449,7 +449,7 @@ module.exports = grammar({
                 '/*',
                 /[^*]*\*+([^/*][^*]*\*+)*/,
                 '/'
-			)
+            )
         ))
     }
 })

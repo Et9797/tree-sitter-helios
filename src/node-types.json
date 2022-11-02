@@ -970,20 +970,12 @@
     "named": true,
     "fields": {
       "args": {
-        "multiple": true,
-        "required": true,
+        "multiple": false,
+        "required": false,
         "types": [
-          {
-            "type": ",",
-            "named": false
-          },
           {
             "type": "func_args",
             "named": true
-          },
-          {
-            "type": "self",
-            "named": false
           }
         ]
       },

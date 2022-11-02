@@ -265,12 +265,8 @@
           "value": "("
         },
         {
-          "type": "FIELD",
-          "name": "args",
-          "content": {
-            "type": "SYMBOL",
-            "name": "_method_args"
-          }
+          "type": "SYMBOL",
+          "name": "_method_args"
         },
         {
           "type": "STRING",
@@ -358,8 +354,12 @@
                   "value": ","
                 },
                 {
-                  "type": "SYMBOL",
-                  "name": "func_args"
+                  "type": "FIELD",
+                  "name": "args",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "func_args"
+                  }
                 }
               ]
             },
