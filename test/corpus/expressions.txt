@@ -168,7 +168,7 @@ func main() -> Bool {
       (bool_type))
     (assignment_expression
       name: (identifier)
-      (type
+      type: (type
         (str_type))
       (literal_expression
         (string_literal))
@@ -309,7 +309,7 @@ func main() -> Bool {
         (switch_value_expr
           (assignment_expression
             name: (identifier)
-            (type
+            type: (type
               (str_type))
             (literal_expression
               (string_literal))

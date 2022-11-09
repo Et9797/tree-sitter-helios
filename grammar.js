@@ -332,7 +332,7 @@ module.exports = grammar({
             optional(
                 seq(
                     ':',
-                    $.type
+                    field('type', $.type)
                 )
             ),
             '=',

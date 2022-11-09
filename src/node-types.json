@@ -12,6 +12,16 @@
             "named": true
           }
         ]
+      },
+      "type": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "type",
+            "named": true
+          }
+        ]
       }
     },
     "children": {
@@ -52,10 +62,6 @@
         },
         {
           "type": "switch_expression",
-          "named": true
-        },
-        {
-          "type": "type",
           "named": true
         },
         {
