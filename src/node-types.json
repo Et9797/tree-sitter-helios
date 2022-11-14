@@ -1937,6 +1937,10 @@
     "named": false
   },
   {
+    "type": "else if",
+    "named": false
+  },
+  {
     "type": "enum",
     "named": false
   },

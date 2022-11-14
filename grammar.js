@@ -397,8 +397,7 @@ module.exports = grammar({
             choice($._value_expression, $.print_expression, $.assignment_expression),
             '}',
             repeat(seq(
-                'else',
-                'if',
+                'else if',
                 '(',
                 $._value_expression,
                 ')',
@@ -423,6 +422,8 @@ module.exports = grammar({
             ),
             '}'
         )),
+
+        if_block: $ => 'if',
 
         switch_case: $ => seq(
             choice($.identifier, seq($.identifier, ':', $.identifier)), 
