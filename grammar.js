@@ -1,6 +1,6 @@
 module.exports = grammar({
     name: 'helios',
-      
+
     extras: $ => [
         $._comment,
         /\s/
