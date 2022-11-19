@@ -88,6 +88,10 @@
       "required": true,
       "types": [
         {
+          "type": "assignment_expression",
+          "named": true
+        },
+        {
           "type": "binary_expression",
           "named": true
         },
@@ -109,6 +113,10 @@
         },
         {
           "type": "parens_expression",
+          "named": true
+        },
+        {
+          "type": "print_expression",
           "named": true
         },
         {
@@ -149,6 +157,10 @@
       "required": true,
       "types": [
         {
+          "type": "assignment_expression",
+          "named": true
+        },
+        {
           "type": "binary_expression",
           "named": true
         },
@@ -170,6 +182,10 @@
         },
         {
           "type": "parens_expression",
+          "named": true
+        },
+        {
+          "type": "print_expression",
           "named": true
         },
         {
@@ -221,6 +237,10 @@
       "required": true,
       "types": [
         {
+          "type": "assignment_expression",
+          "named": true
+        },
+        {
           "type": "binary_expression",
           "named": true
         },
@@ -242,6 +262,10 @@
         },
         {
           "type": "parens_expression",
+          "named": true
+        },
+        {
+          "type": "print_expression",
           "named": true
         },
         {
@@ -398,6 +422,10 @@
       "required": true,
       "types": [
         {
+          "type": "assignment_expression",
+          "named": true
+        },
+        {
           "type": "binary_expression",
           "named": true
         },
@@ -419,6 +447,10 @@
         },
         {
           "type": "parens_expression",
+          "named": true
+        },
+        {
+          "type": "print_expression",
           "named": true
         },
         {
@@ -598,6 +630,10 @@
       "required": true,
       "types": [
         {
+          "type": "assignment_expression",
+          "named": true
+        },
+        {
           "type": "binary_expression",
           "named": true
         },
@@ -623,6 +659,10 @@
         },
         {
           "type": "parens_expression",
+          "named": true
+        },
+        {
+          "type": "print_expression",
           "named": true
         },
         {
@@ -823,6 +863,10 @@
       "required": true,
       "types": [
         {
+          "type": "assignment_expression",
+          "named": true
+        },
+        {
           "type": "binary_expression",
           "named": true
         },
@@ -848,6 +892,10 @@
         },
         {
           "type": "parens_expression",
+          "named": true
+        },
+        {
+          "type": "print_expression",
           "named": true
         },
         {
@@ -936,6 +984,10 @@
       "required": true,
       "types": [
         {
+          "type": "assignment_expression",
+          "named": true
+        },
+        {
           "type": "binary_expression",
           "named": true
         },
@@ -957,6 +1009,10 @@
         },
         {
           "type": "parens_expression",
+          "named": true
+        },
+        {
+          "type": "print_expression",
           "named": true
         },
         {
@@ -1150,6 +1206,10 @@
       "required": true,
       "types": [
         {
+          "type": "assignment_expression",
+          "named": true
+        },
+        {
           "type": "binary_expression",
           "named": true
         },
@@ -1171,6 +1231,10 @@
         },
         {
           "type": "parens_expression",
+          "named": true
+        },
+        {
+          "type": "print_expression",
           "named": true
         },
         {
@@ -1411,6 +1475,10 @@
       "required": true,
       "types": [
         {
+          "type": "assignment_expression",
+          "named": true
+        },
+        {
           "type": "binary_expression",
           "named": true
         },
@@ -1436,6 +1504,10 @@
         },
         {
           "type": "path_type",
+          "named": true
+        },
+        {
+          "type": "print_expression",
           "named": true
         },
         {
@@ -1523,6 +1595,10 @@
       "required": true,
       "types": [
         {
+          "type": "assignment_expression",
+          "named": true
+        },
+        {
           "type": "binary_expression",
           "named": true
         },
@@ -1544,6 +1620,10 @@
         },
         {
           "type": "parens_expression",
+          "named": true
+        },
+        {
+          "type": "print_expression",
           "named": true
         },
         {
@@ -1699,6 +1779,10 @@
       "required": true,
       "types": [
         {
+          "type": "assignment_expression",
+          "named": true
+        },
+        {
           "type": "binary_expression",
           "named": true
         },
@@ -1720,6 +1804,10 @@
         },
         {
           "type": "parens_expression",
+          "named": true
+        },
+        {
+          "type": "print_expression",
           "named": true
         },
         {

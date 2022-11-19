@@ -1,21 +1,6 @@
 module.exports = grammar({
     name: 'helios',
       
-    externals: $ => [
-      //$.newline,
-      //$.indent,
-      //$.dedent,
-      //$.string_start,
-      //$.string_content,
-      //$.string_end,
-      //$.comment,
-      //$.close_paren,
-      //$.close_bracket,
-      //$.close_brace,
-      //"}",
-      //"."
-    ],
-
     extras: $ => [
         $._comment,
         /\s/
@@ -26,6 +11,9 @@ module.exports = grammar({
     conflicts: $ => [
         [$.path_type, $.list_type],
         [$.path_type, $.map_type],
+        [$.value_ref_expression, $.assignment_expression],
+        [$.ref_type, $.assignment_expression],
+        [$.ref_type, $.value_ref_expression]
     ],
 
     rules: {
@@ -66,7 +54,7 @@ module.exports = grammar({
             '->',
             field('return_type', $.bool_type),
             '{',
-            choice($._value_expression, $.assignment_expression, $.print_expression),
+            $._value_expression,
             '}'
         ),
 
@@ -79,7 +67,7 @@ module.exports = grammar({
             '->',
             field('return_type', $.type),
             '{',
-            choice($._value_expression, $.assignment_expression, $.print_expression),
+            $._value_expression,
             '}'
         ),
 
@@ -92,7 +80,7 @@ module.exports = grammar({
             '->',
             field('return_type', $.type),
             '{',
-            choice($._value_expression, $.assignment_expression, $.print_expression),
+            $._value_expression,
             '}'
         ),
 
@@ -240,6 +228,8 @@ module.exports = grammar({
         // Expressions
 
         _value_expression: $ => choice(
+            $.print_expression,
+            $.assignment_expression,
             $.literal_expression,
             $.value_ref_expression,
             $.value_path_expression,
@@ -353,7 +343,7 @@ module.exports = grammar({
             '=',
             $._value_expression,
             $._terminator,
-            choice($._value_expression, $.print_expression, $.assignment_expression)
+            $._value_expression
         )),
 
         print_expression: $ => prec.right(0, seq(
@@ -362,7 +352,7 @@ module.exports = grammar({
             $._value_expression,
             ')',
             $._terminator,
-            choice($._value_expression, $.print_expression, $.assignment_expression)
+            $._value_expression
         )),
 
         unary_expression: $ => prec.right(7, seq(
@@ -407,7 +397,7 @@ module.exports = grammar({
             $._value_expression,
             ')',
             '{',
-            choice($._value_expression, $.print_expression, $.assignment_expression),
+            $._value_expression,
             '}',
             repeat(seq(
                 'else if',
@@ -415,12 +405,12 @@ module.exports = grammar({
                 $._value_expression,
                 ')',
                 '{',
-                choice($._value_expression, $.print_expression, $.assignment_expression),
+                $._value_expression,
                 '}'
             )),
             'else',
             '{',
-            choice($._value_expression, $.print_expression, $.assignment_expression),
+            $._value_expression,
             '}'
         )),
 
@@ -445,10 +435,10 @@ module.exports = grammar({
         ),
 
         switch_value_expr: $ => choice(
-            choice($._value_expression, $.print_expression, $.assignment_expression),
+            $._value_expression,
             seq(
                 '{',
-                choice($._value_expression, $.print_expression, $.assignment_expression),
+                $._value_expression,
                 '}'
             )
         ),
