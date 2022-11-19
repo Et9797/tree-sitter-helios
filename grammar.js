@@ -1,6 +1,21 @@
 module.exports = grammar({
     name: 'helios',
-    
+      
+    externals: $ => [
+      //$.newline,
+      //$.indent,
+      //$.dedent,
+      //$.string_start,
+      //$.string_content,
+      //$.string_end,
+      //$.comment,
+      //$.close_paren,
+      //$.close_bracket,
+      //$.close_brace,
+      //"}",
+      //"."
+    ],
+
     extras: $ => [
         $._comment,
         /\s/
@@ -371,9 +386,7 @@ module.exports = grammar({
         )),
 
         member_expression: $ => prec.left(8, seq(
-            $._value_expression,
-            '.', 
-            $.identifier
+            $._value_expression, '.', field('name', $.identifier)
         )),
 
         call_expression: $ => prec.left(8, seq(

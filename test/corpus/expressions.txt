@@ -507,7 +507,7 @@ func main() -> Bool {
     (member_expression
       (value_ref_expression
         name: (identifier))
-      (identifier)))
+      name: (identifier)))
   (const_statement
     name: (identifier)
     type: (type
@@ -517,8 +517,8 @@ func main() -> Bool {
         (member_expression
           (value_ref_expression
             name: (identifier))
-          (identifier))
-        (identifier))))
+          name: (identifier))
+        name: (identifier))))
   (main_function_statement
     return_type: (bool_type)
     (literal_expression
