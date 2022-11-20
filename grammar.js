@@ -10,10 +10,7 @@ module.exports = grammar({
 
     conflicts: $ => [
         [$.path_type, $.list_type],
-        [$.path_type, $.map_type],
-        [$.value_ref_expression, $.assignment_expression],
-        [$.ref_type, $.assignment_expression],
-        [$.ref_type, $.value_ref_expression]
+        [$.path_type, $.map_type]
     ],
 
     rules: {
@@ -44,6 +41,13 @@ module.exports = grammar({
         ),
 
         // Statements
+        
+        block: $ => seq(
+            '{',
+            repeat(choice($.print_expression, $.assignment_expression)),
+            $._value_expression,
+            '}'
+        ),
 
         main_function_statement: $ => seq(
             'func',
@@ -53,9 +57,7 @@ module.exports = grammar({
             ')',
             '->',
             field('return_type', $.bool_type),
-            '{',
-            $._value_expression,
-            '}'
+            $.block
         ),
 
         function_statement: $ => seq(
@@ -66,9 +68,7 @@ module.exports = grammar({
             ')',
             '->',
             field('return_type', $.type),
-            '{',
-            $._value_expression,
-            '}'
+            $.block
         ),
 
         method_statement: $ => seq(
@@ -79,9 +79,7 @@ module.exports = grammar({
             ')',
             '->',
             field('return_type', $.type),
-            '{',
-            $._value_expression,
-            '}'
+            $.block
         ),
 
         func_args: $ => seq(
@@ -228,8 +226,6 @@ module.exports = grammar({
         // Expressions
 
         _value_expression: $ => choice(
-            $.print_expression,
-            $.assignment_expression,
             $.literal_expression,
             $.value_ref_expression,
             $.value_path_expression,
@@ -327,9 +323,7 @@ module.exports = grammar({
             ')',
             '->',
             field('return_type', $.type),
-            '{',
-            $._value_expression,
-            '}'
+            $.block
         )),
 
         assignment_expression: $ => prec.right(0, seq(
@@ -342,8 +336,7 @@ module.exports = grammar({
             ),
             '=',
             $._value_expression,
-            $._terminator,
-            $._value_expression
+            $.terminator
         )),
 
         print_expression: $ => prec.right(0, seq(
@@ -351,8 +344,7 @@ module.exports = grammar({
             '(',
             $._value_expression,
             ')',
-            $._terminator,
-            $._value_expression
+            $.terminator
         )),
 
         unary_expression: $ => prec.right(7, seq(
@@ -396,22 +388,16 @@ module.exports = grammar({
             '(',
             $._value_expression,
             ')',
-            '{',
-            $._value_expression,
-            '}',
+            $.block,
             repeat(seq(
                 'else if',
                 '(',
                 $._value_expression,
                 ')',
-                '{',
-                $._value_expression,
-                '}'
+                $.block
             )),
             'else',
-            '{',
-            $._value_expression,
-            '}'
+            $.block
         )),
 
         switch_expression: $ => prec.left(8, seq(
@@ -434,16 +420,12 @@ module.exports = grammar({
 
         switch_value_expr: $ => choice(
             $._value_expression,
-            seq(
-                '{',
-                $._value_expression,
-                '}'
-            )
+            $.block
         ),
 
         identifier: $ => /[a-zA-Z_][a-zA-Z0-9_]*/,
 
-        _terminator: $ => ';',
+        terminator: $ => ';',
 
         _comment: $ => token(choice(
             seq('//', /.*/),
