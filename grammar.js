@@ -426,8 +426,6 @@ module.exports = grammar({
             '}'
         )),
 
-        if_block: $ => 'if',
-
         switch_case: $ => seq(
             choice($.identifier, seq($.identifier, ':', $.identifier)), 
             '=>',

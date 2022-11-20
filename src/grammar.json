@@ -1820,10 +1820,6 @@
         ]
       }
     },
-    "if_block": {
-      "type": "STRING",
-      "value": "if"
-    },
     "switch_case": {
       "type": "SEQ",
       "members": [
