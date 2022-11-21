@@ -14,9 +14,10 @@ func main() -> Bool {
   (script_purpose
     script_name: (identifier))
   (main_function_statement
-	return_type: (bool_type)
-	(literal_expression
-	  (bool_literal))))
+    return_type: (bool_type)
+    (block
+      (literal_expression
+        (bool_literal)))))
 
 
 ==================
@@ -105,8 +106,9 @@ func main() -> Bool {
       name: (identifier)
       return_type: (type
         (str_type))
-      (literal_expression
-        (string_literal)))
+      (block
+        (literal_expression
+          (string_literal))))
     (function_statement
       name: (identifier)
       args: (func_args
@@ -120,8 +122,9 @@ func main() -> Bool {
               (int_type))))
       return_type: (type
         (bool_type))
-      (literal_expression
-        (bool_literal))))
+      (block
+        (literal_expression
+          (bool_literal)))))
   (enum_statement
     name: (identifier)
     (enum_variant
@@ -142,14 +145,16 @@ func main() -> Bool {
       name: (identifier)
       return_type: (type
         (bool_type))
-      (literal_expression
-        (bool_literal)))
+      (block
+        (literal_expression
+          (bool_literal))))
     (method_statement
       name: (identifier)
       return_type: (type
         (str_type))
-      (literal_expression
-        (string_literal))))
+      (block
+        (literal_expression
+          (string_literal)))))
   (function_statement
     name: (identifier)
     args: (func_args
@@ -159,10 +164,12 @@ func main() -> Bool {
             (int_type))))
     return_type: (type
       (int_type))
-    (literal_expression
-      (int_literal)))
+    (block
+      (literal_expression
+        (int_literal))))
   (main_function_statement
     return_type: (bool_type)
-    (literal_expression
-      (bool_literal))))
+    (block
+      (literal_expression
+        (bool_literal)))))
 

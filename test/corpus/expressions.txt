@@ -52,80 +52,86 @@ func main() -> Bool {
     name: (identifier)
     return_type: (type
       (bytearray_type))
-    (literal_expression
-      (bytearray_literal)))
+    (block
+      (literal_expression
+        (bytearray_literal))))
   (function_statement
     name: (identifier)
     return_type: (type
       (int_type))
-    (literal_expression
-      (int_literal)))
+    (block
+      (literal_expression
+        (int_literal))))
   (function_statement
     name: (identifier)
     return_type: (type
       (ref_type
         name: (identifier)))
-    (literal_expression
-      (struct_literal
-        struct_identifier: (identifier)
-        struct_field: (identifier)
-        (literal_expression
-          (int_literal))
-        struct_field: (identifier)
-        (literal_expression
-          (string_literal)))))
+    (block
+      (literal_expression
+        (struct_literal
+          struct_identifier: (identifier)
+          struct_field: (identifier)
+          (literal_expression
+            (int_literal))
+          struct_field: (identifier)
+          (literal_expression
+            (string_literal))))))
   (function_statement
     name: (identifier)
     return_type: (type
       (list_type
         (ref_type
           name: (identifier))))
-    (literal_expression
-      (list_literal
-        (list_type
-          (ref_type
-            name: (identifier)))
-        (literal_expression
-          (struct_literal
-            struct_identifier: (identifier)
-            struct_field: (identifier)
-            (literal_expression
-              (int_literal))
-            struct_field: (identifier)
-            (literal_expression
-              (string_literal))))
-        (literal_expression
-          (struct_literal
-            struct_identifier: (identifier)
-            struct_field: (identifier)
-            (literal_expression
-              (int_literal))
-            struct_field: (identifier)
-            (literal_expression
-              (string_literal)))))))
+    (block
+      (literal_expression
+        (list_literal
+          (list_type
+            (ref_type
+              name: (identifier)))
+          (literal_expression
+            (struct_literal
+              struct_identifier: (identifier)
+              struct_field: (identifier)
+              (literal_expression
+                (int_literal))
+              struct_field: (identifier)
+              (literal_expression
+                (string_literal))))
+          (literal_expression
+            (struct_literal
+              struct_identifier: (identifier)
+              struct_field: (identifier)
+              (literal_expression
+                (int_literal))
+              struct_field: (identifier)
+              (literal_expression
+                (string_literal))))))))
   (function_statement
     name: (identifier)
     return_type: (type
       (map_type
         (str_type)
         (int_type)))
-    (literal_expression
-      (map_literal
-        (map_type
-          (str_type)
-          (int_type))
-        (literal_expression
-          (string_literal))
-        (literal_expression
-          (int_literal))
-        (literal_expression
-          (string_literal))
-        (literal_expression
-          (int_literal)))))
+    (block
+      (literal_expression
+        (map_literal
+          (map_type
+            (str_type)
+            (int_type))
+          (literal_expression
+            (string_literal))
+          (literal_expression
+            (int_literal))
+          (literal_expression
+            (string_literal))
+          (literal_expression
+            (int_literal))))))
   (main_function_statement
     return_type: (bool_type)
-    (literal_expression
-      (bool_literal))))
+    (block
+      (literal_expression
+        (bool_literal)))))
 
 
 ==================
@@ -166,34 +172,42 @@ func main() -> Bool {
     name: (identifier)
     return_type: (type
       (bool_type))
-    (assignment_expression
-      name: (identifier)
-      type: (type
-        (str_type))
-      (literal_expression
-        (string_literal))
+    (block
+      (assignment_expression
+        name: (identifier)
+        type: (type
+          (str_type))
+        (literal_expression
+          (string_literal))
+        (terminator))
       (assignment_expression
         name: (identifier)
         (literal_expression
           (string_literal))
-        (print_expression
-          (literal_expression
-            (string_literal))
-          (print_expression
-            (literal_expression
-              (string_literal))
-            (print_expression
-              (value_ref_expression
-                name: (identifier))
-              (print_expression
-                (value_ref_expression
-                  name: (identifier))
-                (literal_expression
-                  (bool_literal)))))))))
+        (terminator))
+      (print_expression
+        (literal_expression
+          (string_literal))
+        (terminator))
+      (print_expression
+        (literal_expression
+          (string_literal))
+        (terminator))
+      (print_expression
+        (value_ref_expression
+          name: (identifier))
+        (terminator))
+      (print_expression
+        (value_ref_expression
+          name: (identifier))
+        (terminator))
+      (literal_expression
+        (bool_literal))))
   (main_function_statement
     return_type: (bool_type)
-    (literal_expression
-      (bool_literal))))
+    (block
+      (literal_expression
+        (bool_literal)))))
 
 
 ==================
@@ -224,9 +238,12 @@ func test() -> Bool {
             print("Buy");
             true
         },
-		else => str: String = "Bid"; print(str); false
+		  else => {
+				str: String = "Bid";
+				print(str);
+				false
+		  }
     }
-
 }
 
 func main() -> Bool {
@@ -284,44 +301,53 @@ func main() -> Bool {
     name: (identifier)
     return_type: (type
       (bool_type))
-    (switch_expression
-      (value_ref_expression
-        name: (identifier))
-      (switch_case
-        (identifier)
-        (identifier)
-        (switch_value_expr
-          (print_expression
-            (literal_expression
-              (string_literal))
-            (literal_expression
-              (bool_literal)))))
-      (switch_case
-        (identifier)
-        (switch_value_expr
-          (print_expression
-            (literal_expression
-              (string_literal))
-            (literal_expression
-              (bool_literal)))))
-      (switch_case
-        (identifier)
-        (switch_value_expr
-          (assignment_expression
-            name: (identifier)
-            type: (type
-              (str_type))
-            (literal_expression
-              (string_literal))
-            (print_expression
-              (value_ref_expression
-                name: (identifier))
+    (block
+      (switch_expression
+        (value_ref_expression
+          name: (identifier))
+        (switch_case
+          (identifier)
+          (identifier)
+          (switch_value_expr
+            (block
+              (print_expression
+                (literal_expression
+                  (string_literal))
+                (terminator))
+              (literal_expression
+                (bool_literal)))))
+        (switch_case
+          (identifier)
+          (switch_value_expr
+            (block
+              (print_expression
+                (literal_expression
+                  (string_literal))
+                (terminator))
+              (literal_expression
+                (bool_literal)))))
+        (switch_case
+          (identifier)
+          (switch_value_expr
+            (block
+              (assignment_expression
+                name: (identifier)
+                type: (type
+                  (str_type))
+                (literal_expression
+                  (string_literal))
+                (terminator))
+              (print_expression
+                (value_ref_expression
+                  name: (identifier))
+                (terminator))
               (literal_expression
                 (bool_literal))))))))
   (main_function_statement
     return_type: (bool_type)
-    (literal_expression
-      (bool_literal))))
+    (block
+      (literal_expression
+        (bool_literal)))))
 
 
 ==================
@@ -359,32 +385,41 @@ func main() -> Bool {
     name: (identifier)
     return_type: (type
       (bool_type))
-    (ifelse_expression
-      (literal_expression
-        (bool_literal))
+    (block
       (ifelse_expression
         (literal_expression
           (bool_literal))
-        (print_expression
+        (block
+          (ifelse_expression
+            (literal_expression
+              (bool_literal))
+            (block
+              (print_expression
+                (literal_expression
+                  (string_literal))
+                (terminator))
+              (literal_expression
+                (bool_literal)))
+            (literal_expression
+              (bool_literal))
+            (block
+              (literal_expression
+                (bool_literal)))
+            (block
+              (literal_expression
+                (bool_literal)))))
+        (block
+          (print_expression
+            (literal_expression
+              (string_literal))
+            (terminator))
           (literal_expression
-            (string_literal))
-          (literal_expression
-            (bool_literal)))
-        (literal_expression
-          (bool_literal))
-        (literal_expression
-          (bool_literal))
-        (literal_expression
-          (bool_literal)))
-      (print_expression
-        (literal_expression
-          (string_literal))
-        (literal_expression
-          (bool_literal)))))
+            (bool_literal))))))
   (main_function_statement
     return_type: (bool_type)
-    (literal_expression
-      (bool_literal))))
+    (block
+      (literal_expression
+        (bool_literal)))))
 
 
 ==================
@@ -446,8 +481,9 @@ func main() -> Bool {
       name: (identifier)
       return_type: (type
         (bool_type))
-      (literal_expression
-        (bool_literal))))
+      (block
+        (literal_expression
+          (bool_literal)))))
   (struct_statement
     name: (identifier)
     (data_field
@@ -521,8 +557,9 @@ func main() -> Bool {
         name: (identifier))))
   (main_function_statement
     return_type: (bool_type)
-    (literal_expression
-      (bool_literal))))
+    (block
+      (literal_expression
+        (bool_literal)))))
 
 
 ==================
@@ -550,13 +587,15 @@ func main() -> Bool {
     name: (identifier)
     return_type: (type
       (bool_type))
-    (assignment_expression
-      name: (identifier)
-      (binary_expression
-        (value_ref_expression
-          name: (identifier))
-        (literal_expression
-          (int_literal)))
+    (block
+      (assignment_expression
+        name: (identifier)
+        (binary_expression
+          (value_ref_expression
+            name: (identifier))
+          (literal_expression
+            (int_literal)))
+        (terminator))
       (assignment_expression
         name: (identifier)
         (binary_expression
@@ -565,13 +604,15 @@ func main() -> Bool {
               (int_literal)))
           (literal_expression
             (int_literal)))
-        (binary_expression
-          (value_ref_expression
-            name: (identifier))
-          (value_ref_expression
-            name: (identifier))))))
+        (terminator))
+      (binary_expression
+        (value_ref_expression
+          name: (identifier))
+        (value_ref_expression
+          name: (identifier)))))
   (main_function_statement
     return_type: (bool_type)
-    (literal_expression
-      (bool_literal))))
+    (block
+      (literal_expression
+        (bool_literal)))))
 

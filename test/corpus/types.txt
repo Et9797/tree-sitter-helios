@@ -26,25 +26,28 @@ func main() -> Bool {
         (str_type))
       return_type: (type
         (str_type)))
-    (literal_expression
-      (func_literal
-        args: (func_args
-          (parameter
-              name: (identifier)
-              type: (type
-                (str_type)))
-          (parameter
-              name: (identifier)
-              type: (type
-                (str_type))))
-        return_type: (type
-          (str_type))
-        (literal_expression
-          (string_literal)))))
+    (block
+      (literal_expression
+        (func_literal
+          args: (func_args
+            (parameter
+                name: (identifier)
+                type: (type
+                  (str_type)))
+            (parameter
+                name: (identifier)
+                type: (type
+                  (str_type))))
+          return_type: (type
+            (str_type))
+          (block
+            (literal_expression
+              (string_literal)))))))
   (main_function_statement
     return_type: (bool_type)
-    (literal_expression
-      (bool_literal))))
+    (block
+      (literal_expression
+        (bool_literal)))))
 
 
 ==================
@@ -111,8 +114,9 @@ func main() -> Bool {
     name: (identifier)
     return_type: (type
       (str_type))
-    (literal_expression
-      (string_literal)))
+    (block
+      (literal_expression
+        (string_literal))))
   (function_statement
     name: (identifier)
     return_type: (type
@@ -120,67 +124,71 @@ func main() -> Bool {
         (ref_type
           name: (identifier))
         name: (identifier)))
-    (literal_expression
-      (int_literal)))
+    (block
+      (literal_expression
+        (int_literal))))
   (function_statement
     name: (identifier)
     return_type: (type
       (list_type
         (bool_type)))
-    (literal_expression
-      (list_literal
-        (list_type
-          (bool_type))
-        (literal_expression
-          (bool_literal))
-        (literal_expression
-          (bool_literal))
-        (literal_expression
-          (bool_literal)))))
+    (block
+      (literal_expression
+        (list_literal
+          (list_type
+            (bool_type))
+          (literal_expression
+            (bool_literal))
+          (literal_expression
+            (bool_literal))
+          (literal_expression
+            (bool_literal))))))
   (function_statement
     name: (identifier)
     return_type: (type
       (list_type
         (str_type)))
-    (literal_expression
-      (list_literal
-        (list_type
-          (str_type))
-        (literal_expression
-          (string_literal))
-        (literal_expression
-          (string_literal))
-        (literal_expression
-          (string_literal)))))
+    (block
+      (literal_expression
+        (list_literal
+          (list_type
+            (str_type))
+          (literal_expression
+            (string_literal))
+          (literal_expression
+            (string_literal))
+          (literal_expression
+            (string_literal))))))
   (function_statement
     name: (identifier)
     return_type: (type
       (list_type
         (ref_type
           name: (identifier))))
-    (literal_expression
-      (list_literal
-        (list_type
-          (ref_type
-            name: (identifier)))
-        (literal_expression
-          (struct_literal
-            struct_identifier: (identifier)
-            struct_field: (identifier)
-            (literal_expression
-              (int_literal))
-            struct_field: (identifier)
-            (literal_expression
-              (string_literal))))
-        (literal_expression
-          (struct_literal
-            struct_identifier: (identifier)
-            struct_field: (identifier)
-            (literal_expression
-              (int_literal))
-            struct_field: (identifier)
-            (literal_expression
-              (string_literal)))))))
+    (block
+      (literal_expression
+        (list_literal
+          (list_type
+            (ref_type
+              name: (identifier)))
+          (literal_expression
+            (struct_literal
+              struct_identifier: (identifier)
+              struct_field: (identifier)
+              (literal_expression
+                (int_literal))
+              struct_field: (identifier)
+              (literal_expression
+                (string_literal))))
+          (literal_expression
+            (struct_literal
+              struct_identifier: (identifier)
+              struct_field: (identifier)
+              (literal_expression
+                (int_literal))
+              struct_field: (identifier)
+              (literal_expression
+                (string_literal))))))))
   (function_statement
     name: (identifier)
     return_type: (type
@@ -192,68 +200,70 @@ func main() -> Bool {
             (ref_type
               name: (identifier))
             (int_type)))))
-    (literal_expression
-      (list_literal
-        (list_type
-          (map_type
-            (ref_type
-              name: (identifier))
-            (map_type
-              (ref_type
-                name: (identifier))
-              (int_type))))
-        (literal_expression
-          (map_literal
+    (block
+      (literal_expression
+        (list_literal
+          (list_type
             (map_type
               (ref_type
                 name: (identifier))
               (map_type
                 (ref_type
                   name: (identifier))
-                (int_type)))
-            (literal_expression
-              (string_literal))
-            (literal_expression
-              (map_literal
-                (map_type
-                  (ref_type
-                    name: (identifier))
-                  (int_type))
-                (literal_expression
-                  (bytearray_literal))
-                (literal_expression
-                  (int_literal))
-                (literal_expression
-                  (bytearray_literal))
-                (literal_expression
-                  (int_literal))))))
-        (literal_expression
-          (map_literal
-            (map_type
-              (ref_type
-                name: (identifier))
+                (int_type))))
+          (literal_expression
+            (map_literal
               (map_type
                 (ref_type
                   name: (identifier))
-                (int_type)))
-            (literal_expression
-              (string_literal))
-            (literal_expression
-              (map_literal
                 (map_type
                   (ref_type
                     name: (identifier))
-                  (int_type))
-                (literal_expression
-                  (bytearray_literal))
-                (literal_expression
-                  (int_literal))
-                (literal_expression
-                  (bytearray_literal))
-                (literal_expression
-                  (int_literal)))))))))
+                  (int_type)))
+              (literal_expression
+                (string_literal))
+              (literal_expression
+                (map_literal
+                  (map_type
+                    (ref_type
+                      name: (identifier))
+                    (int_type))
+                  (literal_expression
+                    (bytearray_literal))
+                  (literal_expression
+                    (int_literal))
+                  (literal_expression
+                    (bytearray_literal))
+                  (literal_expression
+                    (int_literal))))))
+          (literal_expression
+            (map_literal
+              (map_type
+                (ref_type
+                  name: (identifier))
+                (map_type
+                  (ref_type
+                    name: (identifier))
+                  (int_type)))
+              (literal_expression
+                (string_literal))
+              (literal_expression
+                (map_literal
+                  (map_type
+                    (ref_type
+                      name: (identifier))
+                    (int_type))
+                  (literal_expression
+                    (bytearray_literal))
+                  (literal_expression
+                    (int_literal))
+                  (literal_expression
+                    (bytearray_literal))
+                  (literal_expression
+                    (int_literal))))))))))
   (main_function_statement
     return_type: (bool_type)
-    (literal_expression
-      (bool_literal))))
+    (block
+      (literal_expression
+        (bool_literal)))))
 
