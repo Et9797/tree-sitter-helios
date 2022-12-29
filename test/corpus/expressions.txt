@@ -51,22 +51,25 @@ func main() -> Bool {
   (function_statement
     name: (identifier)
     return_type: (type
-      (bytearray_type))
+      (nonfunc_type
+        (bytearray_type)))
     (block
       (literal_expression
         (bytearray_literal))))
   (function_statement
     name: (identifier)
     return_type: (type
-      (int_type))
+      (nonfunc_type
+        (int_type)))
     (block
       (literal_expression
         (int_literal))))
   (function_statement
     name: (identifier)
     return_type: (type
-      (ref_type
-        name: (identifier)))
+      (nonfunc_type
+        (ref_type
+          name: (identifier))))
     (block
       (literal_expression
         (struct_literal
@@ -80,15 +83,18 @@ func main() -> Bool {
   (function_statement
     name: (identifier)
     return_type: (type
-      (list_type
-        (ref_type
-          name: (identifier))))
+      (nonfunc_type
+        (list_type
+          (nonfunc_type
+            (ref_type
+              name: (identifier))))))
     (block
       (literal_expression
         (list_literal
           (list_type
-            (ref_type
-              name: (identifier)))
+            (nonfunc_type
+              (ref_type
+                name: (identifier))))
           (literal_expression
             (struct_literal
               struct_identifier: (identifier)
@@ -110,15 +116,20 @@ func main() -> Bool {
   (function_statement
     name: (identifier)
     return_type: (type
-      (map_type
-        (str_type)
-        (int_type)))
+      (nonfunc_type
+        (map_type
+          (nonfunc_type
+            (str_type))
+          (nonfunc_type
+            (int_type)))))
     (block
       (literal_expression
         (map_literal
           (map_type
-            (str_type)
-            (int_type))
+            (nonfunc_type
+              (str_type))
+            (nonfunc_type
+              (int_type)))
           (literal_expression
             (string_literal))
           (literal_expression
@@ -165,18 +176,21 @@ func main() -> Bool {
   (const_statement
     name: (identifier)
     type: (type
-      (str_type))
+      (nonfunc_type
+        (str_type)))
     (literal_expression
       (int_literal)))
   (function_statement
     name: (identifier)
     return_type: (type
-      (bool_type))
+      (nonfunc_type
+        (bool_type)))
     (block
       (assignment_expression
         name: (identifier)
         type: (type
-          (str_type))
+          (nonfunc_type
+            (str_type)))
         (literal_expression
           (string_literal))
         (terminator))
@@ -260,13 +274,15 @@ func main() -> Bool {
     (enum_variant
       name: (identifier)
       (data_field
-          name: (identifier)
-          type: (type
-            (int_type)))
-      (data_field
-          name: (identifier)
-          type: (type
+        name: (identifier)
+        type: (type
+          (nonfunc_type
             (int_type))))
+      (data_field
+        name: (identifier)
+        type: (type
+          (nonfunc_type
+            (int_type)))))
     (enum_variant
       name: (identifier))
     (enum_variant
@@ -274,13 +290,15 @@ func main() -> Bool {
   (const_statement
     name: (identifier)
     type: (type
-      (ref_type
-        name: (identifier)))
+      (nonfunc_type
+        (ref_type
+          name: (identifier))))
     (literal_expression
       (struct_literal
         (path_type
-          (ref_type
-            name: (identifier))
+          (nonfunc_type
+            (ref_type
+              name: (identifier)))
           name: (identifier))
         struct_field: (identifier)
         (literal_expression
@@ -291,58 +309,56 @@ func main() -> Bool {
   (const_statement
     name: (identifier)
     type: (type
-      (ref_type
-        name: (identifier)))
+      (nonfunc_type
+        (ref_type
+          name: (identifier))))
     (value_path_expression
-      (ref_type
-        name: (identifier))
+      (nonfunc_type
+        (ref_type
+          name: (identifier)))
       name: (identifier)))
   (function_statement
     name: (identifier)
     return_type: (type
-      (bool_type))
+      (nonfunc_type
+        (bool_type)))
     (block
       (switch_expression
         (value_ref_expression
           name: (identifier))
-        (switch_case
-          (identifier)
-          (identifier)
-          (switch_value_expr
-            (block
-              (print_expression
-                (literal_expression
-                  (string_literal))
-                (terminator))
-              (literal_expression
-                (bool_literal)))))
-        (switch_case
-          (identifier)
-          (switch_value_expr
-            (block
-              (print_expression
-                (literal_expression
-                  (string_literal))
-                (terminator))
-              (literal_expression
-                (bool_literal)))))
-        (switch_case
-          (identifier)
-          (switch_value_expr
-            (block
-              (assignment_expression
-                name: (identifier)
-                type: (type
-                  (str_type))
-                (literal_expression
-                  (string_literal))
-                (terminator))
-              (print_expression
-                (value_ref_expression
-                  name: (identifier))
-                (terminator))
-              (literal_expression
-                (bool_literal))))))))
+        (identifier)
+        (identifier)
+        (block
+          (print_expression
+            (literal_expression
+              (string_literal))
+            (terminator))
+          (literal_expression
+            (bool_literal)))
+        (identifier)
+        (block
+          (print_expression
+            (literal_expression
+              (string_literal))
+            (terminator))
+          (literal_expression
+            (bool_literal)))
+        (identifier)
+        (block
+          (assignment_expression
+            name: (identifier)
+            type: (type
+              (nonfunc_type
+                (str_type)))
+            (literal_expression
+              (string_literal))
+            (terminator))
+          (print_expression
+            (value_ref_expression
+              name: (identifier))
+            (terminator))
+          (literal_expression
+            (bool_literal))))))
   (main_function_statement
     return_type: (bool_type)
     (block
@@ -384,7 +400,8 @@ func main() -> Bool {
   (function_statement
     name: (identifier)
     return_type: (type
-      (bool_type))
+      (nonfunc_type
+        (bool_type)))
     (block
       (ifelse_expression
         (literal_expression
@@ -466,13 +483,15 @@ func main() -> Bool {
     (enum_variant
       name: (identifier)
       (data_field
-          name: (identifier)
-          type: (type
-            (int_type)))
-      (data_field
-          name: (identifier)
-          type: (type
+        name: (identifier)
+        type: (type
+          (nonfunc_type
             (int_type))))
+      (data_field
+        name: (identifier)
+        type: (type
+          (nonfunc_type
+            (int_type)))))
     (enum_variant
       name: (identifier))
     (enum_variant
@@ -480,26 +499,30 @@ func main() -> Bool {
     (function_statement
       name: (identifier)
       return_type: (type
-        (bool_type))
+        (nonfunc_type
+          (bool_type)))
       (block
         (literal_expression
           (bool_literal)))))
   (struct_statement
     name: (identifier)
     (data_field
-        name: (identifier)
-        type: (type
-          (int_type))))
+      name: (identifier)
+      type: (type
+        (nonfunc_type
+          (int_type)))))
   (const_statement
     name: (identifier)
     type: (type
-      (ref_type
-        name: (identifier)))
+      (nonfunc_type
+        (ref_type
+          name: (identifier))))
     (literal_expression
       (struct_literal
         (path_type
-          (ref_type
-            name: (identifier))
+          (nonfunc_type
+            (ref_type
+              name: (identifier)))
           name: (identifier))
         struct_field: (identifier)
         (literal_expression
@@ -510,27 +533,32 @@ func main() -> Bool {
   (const_statement
     name: (identifier)
     type: (type
-      (ref_type
-        name: (identifier)))
+      (nonfunc_type
+        (ref_type
+          name: (identifier))))
     (value_path_expression
-      (ref_type
-        name: (identifier))
+      (nonfunc_type
+        (ref_type
+          name: (identifier)))
       name: (identifier)))
   (const_statement
     name: (identifier)
     type: (type
-      (ref_type
-        name: (identifier)))
+      (nonfunc_type
+        (ref_type
+          name: (identifier))))
     (call_expression
       (value_path_expression
-        (ref_type
-          name: (identifier))
+        (nonfunc_type
+          (ref_type
+            name: (identifier)))
         name: (identifier))))
   (const_statement
     name: (identifier)
     type: (type
-      (ref_type
-        name: (identifier)))
+      (nonfunc_type
+        (ref_type
+          name: (identifier))))
     (literal_expression
       (struct_literal
         struct_identifier: (identifier)
@@ -539,7 +567,8 @@ func main() -> Bool {
   (const_statement
     name: (identifier)
     type: (type
-      (int_type))
+      (nonfunc_type
+        (int_type)))
     (member_expression
       (value_ref_expression
         name: (identifier))
@@ -547,7 +576,8 @@ func main() -> Bool {
   (const_statement
     name: (identifier)
     type: (type
-      (str_type))
+      (nonfunc_type
+        (str_type)))
     (call_expression
       (member_expression
         (member_expression
@@ -586,7 +616,8 @@ func main() -> Bool {
   (function_statement
     name: (identifier)
     return_type: (type
-      (bool_type))
+      (nonfunc_type
+        (bool_type)))
     (block
       (assignment_expression
         name: (identifier)
@@ -615,4 +646,3 @@ func main() -> Bool {
     (block
       (literal_expression
         (bool_literal)))))
-

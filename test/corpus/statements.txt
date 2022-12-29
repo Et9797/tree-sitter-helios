@@ -77,35 +77,41 @@ func main() -> Bool {
   (const_statement
     name: (identifier)
     type: (type
-      (int_type))
+      (nonfunc_type
+        (int_type)))
     (literal_expression
       (int_literal)))
   (const_statement
     name: (identifier)
     type: (type
-      (str_type))
+      (nonfunc_type
+        (str_type)))
     (literal_expression
       (string_literal)))
   (struct_statement
     name: (identifier)
     (data_field
-        name: (identifier)
-        type: (type
-          (int_type)))
+      name: (identifier)
+      type: (type
+        (nonfunc_type
+          (int_type))))
     (data_field
-        name: (identifier)
-        type: (type
-          (int_type)))
+      name: (identifier)
+      type: (type
+        (nonfunc_type
+          (int_type))))
     (const_statement
       name: (identifier)
       type: (type
-        (str_type))
+        (nonfunc_type
+          (str_type)))
       (literal_expression
         (string_literal)))
     (method_statement
       name: (identifier)
       return_type: (type
-        (str_type))
+        (nonfunc_type
+          (str_type)))
       (block
         (literal_expression
           (string_literal))))
@@ -113,15 +119,18 @@ func main() -> Bool {
       name: (identifier)
       args: (func_args
         (parameter
-            name: (identifier)
-            type: (type
-              (int_type)))
-        (parameter
-            name: (identifier)
-            type: (type
+          name: (identifier)
+          type: (type
+            (nonfunc_type
               (int_type))))
+        (parameter
+          name: (identifier)
+          type: (type
+            (nonfunc_type
+              (int_type)))))
       return_type: (type
-        (bool_type))
+        (nonfunc_type
+          (bool_type)))
       (block
         (literal_expression
           (bool_literal)))))
@@ -134,24 +143,28 @@ func main() -> Bool {
     (enum_variant
       name: (identifier)
       (data_field
-          name: (identifier)
-          type: (type
-            (int_type)))
+        name: (identifier)
+        type: (type
+          (nonfunc_type
+            (int_type))))
       (data_field
-          name: (identifier)
-          type: (type
-            (str_type))))
+        name: (identifier)
+        type: (type
+          (nonfunc_type
+            (str_type)))))
     (function_statement
       name: (identifier)
       return_type: (type
-        (bool_type))
+        (nonfunc_type
+          (bool_type)))
       (block
         (literal_expression
           (bool_literal))))
     (method_statement
       name: (identifier)
       return_type: (type
-        (str_type))
+        (nonfunc_type
+          (str_type)))
       (block
         (literal_expression
           (string_literal)))))
@@ -159,11 +172,13 @@ func main() -> Bool {
     name: (identifier)
     args: (func_args
       (parameter
-          name: (identifier)
-          type: (type
-            (int_type))))
+        name: (identifier)
+        type: (type
+          (nonfunc_type
+            (int_type)))))
     return_type: (type
-      (int_type))
+      (nonfunc_type
+        (int_type)))
     (block
       (literal_expression
         (int_literal))))
@@ -172,4 +187,3 @@ func main() -> Bool {
     (block
       (literal_expression
         (bool_literal)))))
-

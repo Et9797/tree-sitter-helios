@@ -5,13 +5,8 @@ module.exports = grammar({
         $._comment,
         /\s/
     ],
-
+    
     word: $ => $.identifier,
-
-    conflicts: $ => [
-        [$.path_type, $.list_type],
-        [$.path_type, $.map_type]
-    ],
 
     rules: {
         source_file: $ => seq(
@@ -36,7 +31,7 @@ module.exports = grammar({
         ),
 
         script_purpose: $ => seq(
-            choice('spending', 'testing', 'minting'),
+            choice('testing', 'spending', 'minting'),
             field('script_name', $.identifier),
         ),
 
@@ -97,15 +92,17 @@ module.exports = grammar({
             )
         ),
 
-        _name_type_pair: $ => seq(
+        parameter: $ => seq(
             field('name', $.identifier),
             ':',
             field('type', $.type)
         ),
 
-        parameter: $ => alias($._name_type_pair, "parameter"),
-
-        data_field: $ => alias($._name_type_pair, "data_field"),
+        data_field: $ => seq(
+            field('name', $.identifier),
+            ':',
+            field('type', $.type)
+        ),
 
         struct_statement: $ => seq(
             'struct',
@@ -164,11 +161,11 @@ module.exports = grammar({
         // Types
 
         type: $ => choice(
-            $._func_type,
-            $._nonfunc_type,
+            $.func_type,
+            $.nonfunc_type,
         ),
 
-        _func_type: $ => seq(
+        func_type: $ => seq(
             '(',
             optional(
                 seq(
@@ -181,7 +178,7 @@ module.exports = grammar({
             field('return_type', $.type)
         ),
 
-        _nonfunc_type: $ => choice(
+        nonfunc_type: $ => choice(
             $._primitive_type,
             $.ref_type,
             $.path_type,
@@ -205,22 +202,22 @@ module.exports = grammar({
 
         bytearray_type: $ => "ByteArray",
 
-        path_type: $ => seq(
-            $._nonfunc_type, '::', field('name', $.identifier)
-        ),
-
         ref_type: $ => field('name', $.identifier),
 
-        list_type: $ => seq(
-            '[', ']', $._nonfunc_type
-        ),
+        path_type: $ => prec(1, seq(
+            $.nonfunc_type, '::', field('name', $.identifier)
+        )),
 
-        map_type: $ => seq(
-            'Map', '[', $._nonfunc_type, ']', $._nonfunc_type
-        ),
+        list_type: $ => prec(2, seq(
+            '[', ']', $.nonfunc_type
+        )),
+
+        map_type: $ => prec(2, seq(
+            'Map', '[', $.nonfunc_type, ']', $.nonfunc_type
+        )),
 
         option_type: $ => seq(
-            'Option', '[', $._nonfunc_type, ']'
+            'Option', '[', $.nonfunc_type, ']'
         ),
 
         // Expressions
@@ -241,7 +238,7 @@ module.exports = grammar({
         value_ref_expression: $ => field('name', $.identifier),
 
         value_path_expression: $ => prec.left(8, seq(
-            $._nonfunc_type, '::', field('name', $.identifier)
+            $.nonfunc_type, '::', field('name', $.identifier)
         )),
 
         literal_expression: $ => choice(
@@ -259,10 +256,12 @@ module.exports = grammar({
             $.bytearray_literal
         ),
 
-        int_literal: $ => /[0-9]+/,
-            ///0b[0-1]+/,
-            ///0o[0-7]+/,
-            ///0x[0-9a-f]+/
+        int_literal: $ => choice(
+            /[0-9]+/,
+            /0b[0-1]+/,
+            /0o[0-7]+/,
+            /0x[0-9a-f]+/
+         ),
 
         bool_literal: $ => choice('true', 'false'),
 
@@ -406,21 +405,19 @@ module.exports = grammar({
             'switch',
             '{',
             seq(
-                $.switch_case,
-                repeat(seq(',', $.switch_case)),
+                $._switch_case,
+                repeat(seq(',', $._switch_case)),
             ),
             '}'
         )),
 
-        switch_case: $ => seq(
+        _switch_case: $ => seq(
             choice($.identifier, seq($.identifier, ':', $.identifier)), 
             '=>',
-            $.switch_value_expr
-        ),
-
-        switch_value_expr: $ => choice(
-            $._value_expression,
-            $.block
+            choice(
+               $._value_expression,
+               $.block
+            )
         ),
 
         identifier: $ => /[a-zA-Z_][a-zA-Z0-9_]*/,

@@ -1,6 +1,2 @@
 .venv/
-parser.py
 examples/
-build/
-log.html
-grammar_testing/

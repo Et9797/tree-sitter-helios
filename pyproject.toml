@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "tree-sitter-helios"
+version = "0.1.0"
+description = ""
+authors = ["et <et>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.7"
+tree-sitter = "^0.20.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
