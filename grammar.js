@@ -9,7 +9,7 @@ module.exports = grammar({
     word: $ => $.identifier,
 
     externals: $ => [
-		  $.dummy_token
+        $.dummy_token
     ],
 
     rules: {
@@ -373,7 +373,7 @@ module.exports = grammar({
         member_expression: $ => prec.left(8, seq(
             $._value_expression, 
             '.', 
-				choice(field('name', $.identifier), $.dummy_token) 
+             choice(field('name', $.identifier), $.dummy_token) 
             // external scanner always inserts a dummy token after `.`, helps with error tolerance
         )),
 
