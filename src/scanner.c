@@ -28,8 +28,9 @@ static bool scan_dummy_token(TSLexer *lexer) {
   return true;
 }
 
-bool tree_sitter_helios_external_scanner_scan(void *payload, TSLexer *lexer,
-                                                  const bool *valid_symbols) {
+bool tree_sitter_helios_external_scanner_scan(
+	void *payload, TSLexer *lexer, const bool *valid_symbols
+) {
 	if (scan_dummy_token(lexer))
 		return true;
 }
