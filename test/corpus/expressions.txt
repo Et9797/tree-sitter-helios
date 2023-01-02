@@ -326,8 +326,9 @@ func main() -> Bool {
       (switch_expression
         (value_ref_expression
           name: (identifier))
-        (identifier)
-        (identifier)
+        (variant_rename
+          name: (identifier)
+          variant: (identifier))
         (block
           (print_expression
             (literal_expression
@@ -335,7 +336,7 @@ func main() -> Bool {
             (terminator))
           (literal_expression
             (bool_literal)))
-        (identifier)
+        variant: (identifier)
         (block
           (print_expression
             (literal_expression
@@ -343,7 +344,7 @@ func main() -> Bool {
             (terminator))
           (literal_expression
             (bool_literal)))
-        (identifier)
+        variant: (identifier)
         (block
           (assignment_expression
             name: (identifier)
