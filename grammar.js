@@ -410,9 +410,16 @@ module.exports = grammar({
             ),
             '}'
         )),
+   
+        variant_rename: $ => field('variant_rename', seq(
+            field('name', $.identifier), ':', field('variant', $.identifier)
+        )),
 
         _switch_case: $ => seq(
-            choice($.identifier, seq($.identifier, ':', $.identifier)), 
+            choice(
+               field('variant', $.identifier), 
+               $.variant_rename
+            ), 
             '=>',
             choice(
                $._value_expression,
