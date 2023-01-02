@@ -8,6 +8,10 @@ module.exports = grammar({
     
     word: $ => $.identifier,
 
+    externals: $ => [
+		  $.dummy_token
+    ],
+
     rules: {
         source_file: $ => seq(
             $.script_purpose,
@@ -367,7 +371,10 @@ module.exports = grammar({
         )),
 
         member_expression: $ => prec.left(8, seq(
-            $._value_expression, '.', field('name', $.identifier)
+            $._value_expression, 
+            '.', 
+				choice(field('name', $.identifier), $.dummy_token) 
+            // external scanner always inserts a dummy token after `.`, helps with error tolerance
         )),
 
         call_expression: $ => prec.left(8, seq(
@@ -441,4 +448,3 @@ module.exports = grammar({
         ))
     }
 })
-

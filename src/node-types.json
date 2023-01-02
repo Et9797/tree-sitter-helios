@@ -816,7 +816,7 @@
     "fields": {
       "name": {
         "multiple": false,
-        "required": true,
+        "required": false,
         "types": [
           {
             "type": "identifier",
@@ -826,7 +826,7 @@
       }
     },
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
         {
@@ -835,6 +835,10 @@
         },
         {
           "type": "call_expression",
+          "named": true
+        },
+        {
+          "type": "dummy_token",
           "named": true
         },
         {
@@ -1665,6 +1669,10 @@
   {
     "type": "const",
     "named": false
+  },
+  {
+    "type": "dummy_token",
+    "named": true
   },
   {
     "type": "else",
