@@ -552,6 +552,10 @@
           "named": true
         },
         {
+          "type": "dummy_token",
+          "named": true
+        },
+        {
           "type": "ifelse_expression",
           "named": true
         },
@@ -1067,7 +1071,7 @@
     "fields": {
       "name": {
         "multiple": false,
-        "required": true,
+        "required": false,
         "types": [
           {
             "type": "identifier",
@@ -1077,9 +1081,13 @@
       }
     },
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "dummy_token",
+          "named": true
+        },
         {
           "type": "nonfunc_type",
           "named": true
@@ -1474,7 +1482,7 @@
     "fields": {
       "name": {
         "multiple": false,
-        "required": true,
+        "required": false,
         "types": [
           {
             "type": "identifier",
@@ -1484,9 +1492,13 @@
       }
     },
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "dummy_token",
+          "named": true
+        },
         {
           "type": "nonfunc_type",
           "named": true
@@ -1676,10 +1688,6 @@
   },
   {
     "type": "else",
-    "named": false
-  },
-  {
-    "type": "else if",
     "named": false
   },
   {

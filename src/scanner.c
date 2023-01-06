@@ -12,16 +12,22 @@ unsigned tree_sitter_helios_external_scanner_serialize(void *p, char *buffer) { 
 void tree_sitter_helios_external_scanner_deserialize(void *p, const char *b, unsigned n) {}
 
 static void advance(TSLexer *lexer) { lexer->advance(lexer, false); }
-static void skip(TSLexer *lexer) { lexer->advance(lexer, true); }
 
 static bool scan_dummy_token(TSLexer *lexer) {
-  // Check if the next character is an alphabetical character
-  if (iswalpha(lexer->lookahead) || lexer->lookahead == '_') {
-    // Return false to indicate that the dummy token should not be inserted
+  if (iswalpha(lexer->lookahead) || lexer->lookahead == '_' || iswspace(lexer->lookahead)) {
+    if (iswspace(lexer->lookahead)) {
+      advance(lexer);
+      if (iswalpha(lexer->lookahead) || lexer->lookahead == '_') {
+        return false;
+      } else {
+        lexer->result_symbol = DUMMY_TOKEN;
+        lexer->mark_end(lexer);
+        return true;
+      }
+    } 
     return false;
   }
 
-  // Set the result symbol to the dummy token
   lexer->result_symbol = DUMMY_TOKEN;
   lexer->mark_end(lexer);
 
@@ -29,8 +35,7 @@ static bool scan_dummy_token(TSLexer *lexer) {
 }
 
 bool tree_sitter_helios_external_scanner_scan(
-  void *payload, TSLexer *lexer, const bool *valid_symbols
+	void *payload, TSLexer *lexer, const bool *valid_symbols
 ) {
-  if (scan_dummy_token(lexer))
-    return true;
+	return scan_dummy_token(lexer);
 }

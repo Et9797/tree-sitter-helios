@@ -209,7 +209,9 @@ module.exports = grammar({
         ref_type: $ => field('name', $.identifier),
 
         path_type: $ => prec(1, seq(
-            $.nonfunc_type, '::', field('name', $.identifier)
+            $.nonfunc_type, '::', choice(field('name', $.identifier), $.dummy_token)
+            // external scanner inserts a dummy token after `::` if there is no 
+            // character following it
         )),
 
         list_type: $ => prec(2, seq(
@@ -242,7 +244,9 @@ module.exports = grammar({
         value_ref_expression: $ => field('name', $.identifier),
 
         value_path_expression: $ => prec.left(8, seq(
-            $.nonfunc_type, '::', field('name', $.identifier)
+            $.nonfunc_type, '::', choice(field('name', $.identifier), $.dummy_token)
+            // external scanner inserts a dummy token after `::` if there is no 
+            // character following it
         )),
 
         literal_expression: $ => choice(
@@ -373,8 +377,9 @@ module.exports = grammar({
         member_expression: $ => prec.left(8, seq(
             $._value_expression, 
             '.', 
-             choice(field('name', $.identifier), $.dummy_token) 
-            // external scanner always inserts a dummy token after `.`, helps with error tolerance
+            choice(field('name', $.identifier), $.dummy_token)
+            // external scanner inserts a dummy token after `.` if there is
+            // no character following it
         )),
 
         call_expression: $ => prec.left(8, seq(
@@ -390,21 +395,10 @@ module.exports = grammar({
         )),
 
         ifelse_expression: $ => prec.left(8, seq(
-            'if',
-            '(',
-            $._value_expression,
-            ')',
-            $.block,
-            repeat(seq(
-                'else if',
-                '(',
-                $._value_expression,
-                ')',
-                $.block
-            )),
-            'else',
-            $.block
-        )),
+            seq('if', '(', $._value_expression, ')', $.block),
+            repeat(seq('else', 'if', '(', $._value_expression, ')', $.block)),
+            choice(seq('else', $.block), $.dummy_token))
+        ),
 
         switch_expression: $ => prec.left(8, seq(
             $._value_expression,
