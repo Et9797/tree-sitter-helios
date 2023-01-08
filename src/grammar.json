@@ -1401,8 +1401,16 @@
             "value": ")"
           },
           {
-            "type": "SYMBOL",
-            "name": "terminator"
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "terminator"
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
           }
         ]
       }

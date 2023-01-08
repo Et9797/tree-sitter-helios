@@ -12,6 +12,7 @@ unsigned tree_sitter_helios_external_scanner_serialize(void *p, char *buffer) { 
 void tree_sitter_helios_external_scanner_deserialize(void *p, const char *b, unsigned n) {}
 
 static void advance(TSLexer *lexer) { lexer->advance(lexer, false); }
+static void skip(TSLexer *lexer) { lexer->advance(lexer, true); }
 
 static bool scan_dummy_token(TSLexer *lexer) {
   if (iswalpha(lexer->lookahead) || lexer->lookahead == '_' || iswspace(lexer->lookahead)) {
@@ -24,13 +25,12 @@ static bool scan_dummy_token(TSLexer *lexer) {
         lexer->mark_end(lexer);
         return true;
       }
-    } 
+    }
     return false;
   }
 
   lexer->result_symbol = DUMMY_TOKEN;
   lexer->mark_end(lexer);
-
   return true;
 }
 

@@ -351,7 +351,8 @@ module.exports = grammar({
             '(',
             $._value_expression,
             ')',
-            $.terminator
+            optional($.terminator) // TODO: temp fix, change later in external scanner to automatically insert semicolon
+            //seq(')', choice($.terminator, $.automatic_semicolon))
         )),
 
         unary_expression: $ => prec.right(7, seq(
