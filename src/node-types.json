@@ -552,10 +552,6 @@
           "named": true
         },
         {
-          "type": "dummy_token",
-          "named": true
-        },
-        {
           "type": "ifelse_expression",
           "named": true
         },

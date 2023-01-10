@@ -402,9 +402,9 @@ module.exports = grammar({
         )),
 
         ifelse_expression: $ => prec.left(8, seq(
-            seq('if', '(', $._value_expression, ')', $.block),
+            seq('if', '(', $._value_expression, ')', optional($.block)),
             repeat(seq('else', 'if', '(', $._value_expression, ')', $.block)),
-            choice(seq('else', $.block), $.dummy_token))
+            optional(seq('else', $.block)))
         ),
 
         switch_expression: $ => prec.left(8, seq(
