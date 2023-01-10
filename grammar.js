@@ -283,21 +283,24 @@ module.exports = grammar({
 
         struct_literal: $ => prec.left(8, seq(
             choice(field('struct_identifier', $.identifier), $.path_type),
-            seq(
-                '{',
+            '{',
+            choice(
+                ',', // TODO: temp error tolerance fix, change in the future
                 seq(
-                    optional(seq(field('struct_field', $.identifier), ':')),
-                    $._value_expression
-                ),
-                repeat(
                     seq(
-                        ',',
                         optional(seq(field('struct_field', $.identifier), ':')),
                         $._value_expression
                     ),
-                ),
-                '}'
-            )
+                    repeat(
+                        seq(
+                            ',',
+                            optional(seq(field('struct_field', $.identifier), ':')),
+                            optional($._value_expression) // TODO: temp error tolerance fix, change in the future
+                        )
+                    )
+                )
+            ),
+            '}'
         )),
 
         list_literal: $ => prec.left(8, seq(
@@ -351,7 +354,7 @@ module.exports = grammar({
             '(',
             $._value_expression,
             ')',
-            optional($.terminator) // TODO: temp fix, change later in external scanner to automatically insert semicolon
+            optional($.terminator) // TODO: temp fix, change in the future to automatically insert semicolon
             //seq(')', choice($.terminator, $.automatic_semicolon))
         )),
 
@@ -386,10 +389,13 @@ module.exports = grammar({
         call_expression: $ => prec.left(8, seq(
             $._value_expression,
             '(',
-            optional(
-                seq(
-                    $._value_expression,
-                    repeat(seq(',', $._value_expression))
+            choice(
+                ',', // TODO: temp error tolerance fix, change in the future
+                optional(
+                    seq(
+                        $._value_expression,
+                        repeat(seq(',', optional($._value_expression)))  // TODO: temp error tolerance fix, change in the future
+                    )
                 )
             ),
             ')'
