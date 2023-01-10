@@ -1793,16 +1793,8 @@
                 "value": ")"
               },
               {
-                "type": "CHOICE",
-                "members": [
-                  {
-                    "type": "SYMBOL",
-                    "name": "block"
-                  },
-                  {
-                    "type": "BLANK"
-                  }
-                ]
+                "type": "SYMBOL",
+                "name": "block"
               }
             ]
           },
@@ -1832,16 +1824,8 @@
                   "value": ")"
                 },
                 {
-                  "type": "CHOICE",
-                  "members": [
-                    {
-                      "type": "SYMBOL",
-                      "name": "block"
-                    },
-                    {
-                      "type": "BLANK"
-                    }
-                  ]
+                  "type": "SYMBOL",
+                  "name": "block"
                 }
               ]
             }

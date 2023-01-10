@@ -402,8 +402,8 @@ module.exports = grammar({
         )),
 
         ifelse_expression: $ => prec.left(8, seq(
-            seq('if', '(', $._value_expression, ')', optional($.block)), // TODO: temp error tolerance fix, change in the future
-            repeat(seq('else', 'if', '(', $._value_expression, ')', optional($.block))),
+            seq('if', '(', $._value_expression, ')', $.block),
+            repeat(seq('else', 'if', '(', $._value_expression, ')', $.block)),
             choice(seq('else', $.block), $.dummy_token))
         ),
 
