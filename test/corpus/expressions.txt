@@ -405,39 +405,34 @@ func main() -> Bool {
         (bool_type)))
     (block
       (ifelse_expression
-        (if_statement
-          (literal_expression
-            (bool_literal))
-          (block
-            (ifelse_expression
-              (if_statement
-                (literal_expression
-                  (bool_literal))
-                (block
-                  (print_expression
-                    (literal_expression
-                      (string_literal))
-                    (terminator))
-                  (literal_expression
-                    (bool_literal))))
-              (elif_statement
-                (literal_expression
-                  (bool_literal))
-                (block
-                  (literal_expression
-                    (bool_literal))))
-              (else_statement
-                (block
-                  (literal_expression
-                    (bool_literal)))))))
-        (else_statement
-          (block
-            (print_expression
-              (literal_expression
-                (string_literal))
-              (terminator))
+        (literal_expression
+          (bool_literal))
+        (block
+          (ifelse_expression
             (literal_expression
-              (bool_literal)))))))
+              (bool_literal))
+            (block
+              (print_expression
+                (literal_expression
+                  (string_literal))
+                (terminator))
+              (literal_expression
+                (bool_literal)))
+            (literal_expression
+              (bool_literal))
+            (block
+              (literal_expression
+                (bool_literal)))
+            (block
+              (literal_expression
+                (bool_literal)))))
+        (block
+          (print_expression
+            (literal_expression
+              (string_literal))
+            (terminator))
+          (literal_expression
+            (bool_literal))))))
   (main_function_statement
     return_type: (bool_type)
     (block
