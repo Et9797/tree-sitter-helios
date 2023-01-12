@@ -346,7 +346,7 @@ module.exports = grammar({
             ),
             '=',
             $._value_expression,
-            $.terminator
+            optional($.terminator) // TODO: change
         )),
 
         print_expression: $ => prec.right(0, seq(
@@ -355,7 +355,7 @@ module.exports = grammar({
             $._value_expression,
             ')',
             optional($.terminator) // TODO: temp fix, change in the future to automatically insert semicolon
-            //seq(')', choice($.terminator, $.automatic_semicolon))
+            //choice($.terminator, $.automatic_semicolon))
         )),
 
         unary_expression: $ => prec.right(7, seq(

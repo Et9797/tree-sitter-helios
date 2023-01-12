@@ -1389,8 +1389,16 @@
             "name": "_value_expression"
           },
           {
-            "type": "SYMBOL",
-            "name": "terminator"
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "terminator"
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
           }
         ]
       }
